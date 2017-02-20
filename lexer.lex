@@ -4,8 +4,9 @@
 %}
 
 %%
-[a-zA-Z][a-zA-Z0-9]*	{ return NAME; }
+[a-zA-Z][a-zA-Z0-9]*	{ yylval.o = new AST(yytext); return NAME; }
 ":"						{ return COLON; }
+";"						{ return SEMICOLON; }
 "->"					{ return ARROW; }
 "{"						{ return LBRACE; }
 "}"						{ return RBRACE; }

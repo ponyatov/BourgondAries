@@ -1,12 +1,18 @@
 %{
 #include "hpp.hpp" 
 %}
-%defines
-%token NAME COLON ARROW LBRACE RBRACE	/* name : -> { } */
+%defines %union { AST*o; }
+%token <o> NAME 
+%token COLON ARROW LBRACE RBRACE SEMICOLON	/* name : -> { } ; */
 %%
 input:
-	NAME COLON ARROW LBRACE RBRACE
+	NAME COLON ARROW LBRACE statements RBRACE
+statements : statements statement | empty
+statement : NAME SEMICOLON { cout << $1->cpp() << endl; }
+empty :;
 %%
 
-void yyerror(string msg) { cerr<<endl<<msg<<endl; exit(-1); }
+#define YYERR "\n\n"<<yylineno<<":"<<msg<<"["<<yytext<<"]\n\n"
+void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; exit(-1); }
+int main() { return yyparse(); }
 
