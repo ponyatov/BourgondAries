@@ -1,4 +1,4 @@
-enter: ->
+main: ->
 {
 somestuff;
 another;

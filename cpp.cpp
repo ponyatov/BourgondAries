@@ -1,9 +1,5 @@
 #include "hpp.hpp"
-
-AST::AST(string V) { tag="AST"; val=V; }
-AST::~AST() { for (auto item:child) delete item; }
-
-string AST::cpp() { return tag+":"+val; }
-
-Name::Name(string V):AST(V){}
+#define YYERR "\n\n"<<yylineno<<":"<<msg<<"["<<yytext<<"]\n\n"
+void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; exit(-1); }
+int main() { return yyparse(); }
 

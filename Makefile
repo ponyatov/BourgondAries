@@ -1,5 +1,6 @@
-log.log: enter.code ./exe.exe
+log.log: enter.code ./exe.exe Makefile
 	./exe.exe < $< > $@ && tail $(TAIL) $@
+	cat $@ | $(CXX) -o ./$@.exe -x c - && ./$@.exe
 C = cpp.cpp parser.tab.cpp lex.yy.c 
 H = hpp.hpp parser.tab.hpp
 CXXFLAGS = -std=gnu++11

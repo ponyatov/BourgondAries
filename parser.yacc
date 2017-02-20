@@ -1,18 +1,14 @@
 %{
 #include "hpp.hpp" 
 %}
-%defines %union { AST*o; }
-%token <o> NAME 
-%token COLON ARROW LBRACE RBRACE SEMICOLON	/* name : -> { } ; */
+%defines
+%token NAME COLON ARROW LBRACE RBRACE SEMICOLON	/* name : -> { } ; */
 %%
+REPL : { cout << "#include <stdlib.h>\n#include <stdio.h>\n\n"; } | REPL input
 input:
 	NAME COLON ARROW LBRACE statements RBRACE
-statements : statements statement | empty
-statement : NAME SEMICOLON { cout << $1->cpp() << endl; }
+{ cout << "int " << $1 << "() {\n" << $5 << "}\n\n"; }
+statements : statements statement { $$=$1+'\t'+$2; }| empty
+statement : NAME SEMICOLON { $$="printf(\""+$1+"\\n\");\n"; }
 empty :;
-%%
-
-#define YYERR "\n\n"<<yylineno<<":"<<msg<<"["<<yytext<<"]\n\n"
-void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; exit(-1); }
-int main() { return yyparse(); }
 
