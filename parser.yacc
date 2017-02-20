@@ -4,10 +4,11 @@
 %defines
 %token NAME COLON ARROW LBRACE RBRACE SEMICOLON	/* name : -> { } ; */
 %%
-REPL : { cout << "#include <stdlib.h>\n#include <stdio.h>\n\n"; } | REPL input
+// REPL : { cout << "#include <stdlib.h>\n#include <stdio.h>\n\n"; } 
+REPL : | input REPL
 input:
 	NAME COLON ARROW LBRACE statements RBRACE
-{ cout << "int " << $1 << "() {\n" << $5 << "}\n\n"; }
+{ cout << "int " << $1 << "() {\n" << $5 << " return 0; }\n"; }
 statements : statements statement { $$=$1+'\t'+$2; }| empty
 statement : NAME SEMICOLON { $$="printf(\""+$1+"\\n\");\n"; }
 empty :;
