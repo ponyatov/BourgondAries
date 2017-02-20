@@ -5,6 +5,7 @@
 using namespace std;
 
 extern int yylex(void);
+extern int yylineno;
 extern void yyerror(string);
 #include "parser.tab.hpp"
 

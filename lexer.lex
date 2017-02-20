@@ -3,4 +3,6 @@
 %}
 %option noyywrap main
 %%
+\s	{}
+\n	++yylineno;
 
