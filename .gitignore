@@ -4,3 +4,4 @@
 *.log
 lex.yy.c
 *.tab.?pp
+tcc/
