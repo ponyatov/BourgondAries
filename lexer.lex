@@ -1,7 +1,7 @@
 %{
 #include "hpp.hpp" 
 %}
-%option noyywrap main
+%option noyywrap
 %%
 \s	{}
 \n	++yylineno;
