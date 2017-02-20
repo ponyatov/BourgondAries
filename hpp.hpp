@@ -4,8 +4,9 @@
 #include <iostream>
 using namespace std;
 
-extern int yylex(void);
+extern int yylex();
 extern int yylineno;
+extern int yyparse();
 extern void yyerror(string);
 #include "parser.tab.hpp"
 

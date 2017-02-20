@@ -1,1 +1,2 @@
-int main() {}
+#include "hpp.hpp"
+int main() { return yyparse(); }

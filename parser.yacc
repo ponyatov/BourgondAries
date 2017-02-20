@@ -4,7 +4,8 @@
 %defines
 %token NAME COLON ARROW LBRACE RBRACE	/* name : -> { } */
 %%
-input: 
+input:
+	NAME COLON ARROW LBRACE RBRACE
 %%
 
 void yyerror(string msg) { cerr<<endl<<msg<<endl; exit(-1); }
