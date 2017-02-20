@@ -1,8 +1,14 @@
-%{
-#include "hpp.hpp" 
-%}
 %option noyywrap
+%{
+#include "hpp.hpp" 		// token defines
+%}
+
 %%
-\s	{}
-\n	++yylineno;
+[a-zA-Z][a-zA-Z0-9]*	{ return NAME; }
+":"						{ return COLON; }
+"->"					{ return ARROW; }
+"{"						{ return LBRACE; }
+"}"						{ return RBRACE; }
+[ \t\r]					{}					// drop spaces
+\n						++yylineno;			// count line no
 

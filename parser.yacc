@@ -2,7 +2,7 @@
 #include "hpp.hpp" 
 %}
 %defines
-%token NAME
+%token NAME COLON ARROW LBRACE RBRACE	/* name : -> { } */
 %%
 input: 
 %%
