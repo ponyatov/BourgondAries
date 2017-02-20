@@ -1,7 +1,7 @@
 log.log: enter.code ./exe.exe
 	./exe.exe < $< > $@ && tail $(TAIL) $@
-C = lex.yy.c parser.tab.cpp
-H = hpp.hpp
+C = parser.tab.cpp lex.yy.c 
+H = parser.tab.hpp hpp.hpp 
 ./exe.exe: $(C) $(H)
 	$(CXX) -o $@ $(C)
 lex.yy.c: lexer.lex

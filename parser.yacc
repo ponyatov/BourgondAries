@@ -1,6 +1,7 @@
 %{
 #include "hpp.hpp" 
 %}
+%defines
 %token NAME
 %%
 input: 
